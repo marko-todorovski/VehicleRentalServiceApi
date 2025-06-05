@@ -1,0 +1,182 @@
+
+ Every request must include a header:
+
+  Key: X-API-KEY
+  Value: expected-api-key
+
+
+  This ensures basic API key authentication, so only authorized clients can access your endpoints.
+
+
+ VEHICLE API (`/api/vehicles`)
+ GET:
+
+GET http://localhost:8080/api/vehicles
+ Retrieves a list of all vehicles in the system.
+Example response:
+
+json
+[
+  {
+    "id": 1,
+    "brand": "Toyota",
+    "model": "Camry",
+    "type": "available",
+    "manufactureyear": 2022
+  }
+]
+
+
+
+
+ POST:
+
+POST http://localhost:8080/api/vehicles
+ Adds a new vehicle.
+ Example request:
+
+json
+{
+  "brand": "Toyota",
+  "model": "Camry",
+  "manufactureyear": 2022,
+  "type": "available"
+}
+
+
+ PUT:
+
+PUT http://localhost:8080/api/vehicles
+ Updates an existing vehicle.
+Example request:
+
+json
+{
+  "id": 1,
+  "brand": "Toyota",
+  "model": "Camry",
+  "type": "available",
+  "manufactureyear": 2022
+}
+
+DELETE:
+
+DELETE http://localhost:8080/api/vehicles
+ Deletes a vehicle — possibly based on the request body or ID query (if implemented).
+ You may need to add `/api/vehicles/{id}` for clarity.
+
+
+ MAINTENANCE API (`/api/maintenance`)
+
+GET:http://localhost:8080/api/maintenance
+ POST:
+
+POST http://localhost:8080/api/maintenance
+ Adds a maintenance record for a vehicle.
+ Example request:
+
+json
+{
+  "vehicleId": 123,
+  "description": "Oil change",
+  "maintenanceDate": "2025-06-04"
+}
+
+PUT:http://localhost:8080/api/maintenance{id}
+{
+  "vehicleId": 1,
+  "description": "Changed oil and filters",
+  "maintenanceDate": "2025-06-01"
+}
+
+DELETE:http://localhost:8080/api/maintenance{id}
+
+
+
+ DAMAGE REPORT API (`/api/damage`)
+
+  POST:
+
+POST http://localhost:8080/api/damage
+ Adds a new damage report.
+ Example request:
+
+json
+{
+  "bookingId": 1,
+  "description": "Scratch on left door",
+  "estimatedCost": 200
+}
+
+ DELETE:
+
+DELETE http://localhost:8080/api/damage/{id}
+ Deletes a damage report by ID.
+
+ GET:
+
+GET http://localhost:8080/api/damage
+Retrieves all **damage reports**.
+
+ PUT:
+
+PUT http://localhost:8080/api/damage
+ Updates an existing damage report.
+ Example:
+
+json
+{
+  "id": 1,
+  "bookingId": 1,
+  "description": "Updated description",
+  "estimatedCost": 250,
+  "reportDate": "2025-06-04"
+}
+
+INVOICE API (`/api/invoices`)
+ POST:
+
+POST http://localhost:8080/api/invoices
+ Creates a new invoice.
+ Example request:
+json
+{
+  "bookingId": 1,
+  "amount": 1000,
+  "invoiceDate": "2025-06-01"
+}
+
+
+GET:
+
+GET http://localhost:8080/api/invoices
+ Retrieves all invoices.
+
+PUT:
+
+PUT http://localhost:8080/api/invoices
+ Updates an existing invoice.
+Example request:
+
+json
+{
+  "amount": 1500.00,
+  "invoiceDate": "2025-06-01",
+  "bookingId": 2
+}
+
+ DELETE:
+
+DELETE http://localhost:8080/api/invoices
+ Deletes an invoice — same note as vehicles: ideally use /invoices/{id}.
+
+
+
+
+| Entity        | POST            | GET                       | PUT            | DELETE              |
+| ------------- | --------------- | ------------------------- | -------------- | ------------------- |
+| Vehicle       | Create Vehicle  | Get all Vehicles          | Update Vehicle | Delete Vehicle      |
+| Maintenance   | Add Maintenance | *(you may add GET later)* | *(if added)*   | *(if added)*        |
+| Damage Report | Add Report      | Get all Reports           | Update Report  | Delete Report by ID |
+| Invoice       | Create Invoice  | Get all Invoices          | Update Invoice | Delete Invoice      |
+

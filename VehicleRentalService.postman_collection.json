@@ -1,0 +1,64 @@
+{
+  "info": {
+    "name": "Vehicle Rental Service API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get Vehicles",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-Key",
+            "value": "expected-api-key"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/api/vehicles",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "vehicles"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Add Vehicle",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "X-API-Key",
+            "value": "expected-api-key"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"make\":\"Toyota\",\"model\":\"Corolla\",\"type\":\"Car\",\"available\":true,\"rentalRatePerDay\":50}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/vehicles",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "vehicles"
+          ]
+        }
+      }
+    }
+  ]
+}
